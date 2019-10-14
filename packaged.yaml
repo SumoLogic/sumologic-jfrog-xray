@@ -41,7 +41,7 @@ Parameters:
 Resources:
   JFrogXrayFunction:
     Properties:
-      CodeUri: s3://appdevstore/JFrogXray/v1.0.0/a9113cce23dd35b2b57de2b2e7f92c52
+      CodeUri: s3://appdevstore/JFrogXray/v1.0.0/4de2ce4916702981c64d599d899a836e
       Description: This function gets triggered perodically via CloudWatchEvents and
         fetches logs from JFrogXray and ingest to SumoLogic
       Environment:
@@ -61,7 +61,7 @@ Resources:
       Events:
         ScheduleRule:
           Properties:
-            Schedule: rate(15 minutes)
+            Schedule: rate(10 minutes)
           Type: Schedule
       Handler: main.main
       MemorySize: 256
