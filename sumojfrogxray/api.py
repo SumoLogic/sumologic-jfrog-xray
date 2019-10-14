@@ -217,7 +217,6 @@ class ViolationsLogsAPI(FetchPaginatedDataBasedOnOffset):
         web_hook_issue = {"severity": violation_object["severity"], "type": violation_object["type"],
                           "provider": violation_object["provider"]
                           if "provider" in violation_object else "Unknown",
-                          # TODO
                           "created": self.convert_to_other_time_format(violation_object["created"]),
                           "description": violation_object[
                               "description"] if "description" in violation_object else violation_object[
