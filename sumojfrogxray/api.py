@@ -104,6 +104,7 @@ class FetchPaginatedDataBasedOnOffset(JFrogXrayAPI):
                            data["pagination"]["offset"], data["filters"]["created_from"])
         finally:
             output_handler.close()
+            sess.close()
         self.log.info("Completed LogType Violations Pages: %s, Records %s", page_counter,
                       record_counter)
 
@@ -194,7 +195,8 @@ class ViolationsLogsAPI(FetchPaginatedDataBasedOnOffset):
             except Exception as exc:
                 self.log.error("Error Occurred while fetching LogType detailed violation for URL %s",
                                violation["violation_details_url"])
-
+            finally:
+                sess.close()
         return []
 
     def transform_violations(self, violation_object, violation_url):

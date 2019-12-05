@@ -44,7 +44,8 @@ class SumoJFrogXrayCollector(BaseCollector):
             finally:
                 self.stop_running()
         else:
-            self.kvstore.release_lock_on_expired_key(self.SINGLE_PROCESS_LOCK_KEY, expiry_min=10)
+            if not self.is_process_running(["sumojfrogxray", "main.py"]):
+                self.kvstore.release_lock_on_expired_key(self.SINGLE_PROCESS_LOCK_KEY, expiry_min=10)
 
 
 def main(*args, **kwargs):
