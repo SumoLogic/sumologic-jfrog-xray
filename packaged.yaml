@@ -14,10 +14,10 @@ Metadata:
     - sumologic
     - serverless
     - JFrogXray
-    LicenseUrl: s3://appdevstore/JFrogXray/v1.0.0/5122657d5b9a0d3713e24d3a33eae431
+    LicenseUrl: s3://appdevstore/JFrogXray/v1.0.2/5122657d5b9a0d3713e24d3a33eae431
     Name: sumologic-jfrog-xray
-    ReadmeUrl: s3://appdevstore/JFrogXray/v1.0.0/f7dbb0401c19d046f8ecacefb10fb11d
-    SemanticVersion: 1.0.0
+    ReadmeUrl: s3://appdevstore/JFrogXray/v1.0.2/dc19340cbb6333eec2cf3974344aa522
+    SemanticVersion: 1.0.2
     SourceCodeUrl: https://github.com/SumoLogic/sumologic-jfrog-xray
     SpdxLicenseId: Apache-2.0
 Outputs:
@@ -28,6 +28,8 @@ Outputs:
       - JFrogXrayFunction
       - Arn
 Parameters:
+  BackfillDays:
+    Type: String
   Hostname:
     Type: String
   HttpLogsEndpoint:
@@ -41,11 +43,13 @@ Parameters:
 Resources:
   JFrogXrayFunction:
     Properties:
-      CodeUri: s3://appdevstore/JFrogXray/v1.0.0/4de2ce4916702981c64d599d899a836e
+      CodeUri: s3://appdevstore/JFrogXray/v1.0.2/2400926b482344296b44e3e35b717c6f
       Description: This function gets triggered perodically via CloudWatchEvents and
         fetches logs from JFrogXray and ingest to SumoLogic
       Environment:
         Variables:
+          BACKFILL_DAYS:
+            Ref: BackfillDays
           ENABLE_CONSOLE_LOG: 'false'
           ENVIRONMENT: aws
           HOSTNAME:

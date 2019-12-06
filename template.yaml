@@ -17,7 +17,7 @@ Metadata:
     LicenseUrl: ./LICENSE
     Name: sumologic-jfrog-xray
     ReadmeUrl: ./README.md
-    SemanticVersion: 1.0.0
+    SemanticVersion: 1.0.2
     SourceCodeUrl: https://github.com/SumoLogic/sumologic-jfrog-xray
     SpdxLicenseId: Apache-2.0
 Outputs:
@@ -28,6 +28,8 @@ Outputs:
       - JFrogXrayFunction
       - Arn
 Parameters:
+  BackfillDays:
+    Type: String
   Hostname:
     Type: String
   HttpLogsEndpoint:
@@ -46,6 +48,8 @@ Resources:
         fetches logs from JFrogXray and ingest to SumoLogic
       Environment:
         Variables:
+          BACKFILL_DAYS:
+            Ref: BackfillDays
           ENABLE_CONSOLE_LOG: 'false'
           ENVIRONMENT: aws
           HOSTNAME:

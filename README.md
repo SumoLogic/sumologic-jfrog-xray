@@ -42,6 +42,9 @@ This collector can be deployed both onprem and on cloud.
                 
             SumoLogic:
                 HTTP_LOGS_ENDPOINT: <Paste the URL for the HTTP Logs source from step 2.>
+             
+            Collection:
+                BACKFILL_DAYS: <Enter the Number of days before the event collection will start.>
             ```
     * Create a cron job  for running the collector every 5 minutes by using the crontab -e and adding the below line
 
@@ -64,6 +67,7 @@ This collector can be deployed both onprem and on cloud.
             Password: Paste the password of JFrog Xray Instance from step 1.
             Port: Paste the Port of JFrog Xray Instance from step 1.
             Usernname: Paste the UserName of JFrog Xray Instance from step 1.
+            BackfillDays: Enter the Number of days before the event collection will start
             ```
         * Click Deploy.
 
