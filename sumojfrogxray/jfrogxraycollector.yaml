@@ -1,0 +1,39 @@
+JFrogXray:
+  HOSTNAME: null
+  PORT: null
+  USERNAME: null
+  PASSWORD: null
+  VIOLATION_URL: /api/v1/violations
+
+Logging:
+ LOG_FORMAT: "%(levelname)s | %(asctime)s | %(threadName)s | %(name)s | %(message)s"
+ ROTATION_TYPE: D
+ ROTATION_INTERVAL: 1
+ BACKUP_COUNT: 7
+ ENABLE_CONSOLE_LOG: true
+ ENABLE_LOGFILE: false
+ LOG_FILEPATH: /tmp/sumojfrogxray.log
+ LOG_LEVEL: "INFO"
+
+Collection:
+ ENVIRONMENT: onprem
+ NUM_WORKERS: 2
+ OUTPUT_HANDLER: HTTP
+ MAX_RETRY: 5
+ BACKOFF_FACTOR: 1
+ TIMEOUT: 60
+ COMPRESSED: true
+ MAX_PAYLOAD_BYTESIZE: 500000
+ END_TIME_EPOCH_OFFSET_SECONDS: 120
+ BACKFILL_DAYS: null
+ DBNAME: "sumojfrogxray"
+ DB_DIR: "~/sumo/"
+
+DeployMetaData:
+ PACKAGENAME: sumologic-jfrog-xray
+ SRC_FOLDER_NAME: sumojfrogxray
+ APPNAME: JFrogXray
+ ENABLE_LAYER: false
+
+SumoLogic:
+ HTTP_LOGS_ENDPOINT: null

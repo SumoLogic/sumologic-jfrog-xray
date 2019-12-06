@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'This solution consists of a lambda functions which is used to fetch
+  logs from JFrogXray and ingest to Sumo Logic.
+
+  '
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Author: Sumo Logic
+    Description: This solution consists of a lambda functions which is used to fetch
+      logs from JFrogXray and ingest to Sumo Logic.
+    HomePageUrl: https://github.com/SumoLogic/sumologic-jfrog-xray
+    Labels:
+    - lambda
+    - sumologic
+    - serverless
+    - JFrogXray
+    LicenseUrl: s3://appdevstore/JFrogXray/v1.0.2/5122657d5b9a0d3713e24d3a33eae431
+    Name: sumologic-jfrog-xray
+    ReadmeUrl: s3://appdevstore/JFrogXray/v1.0.2/dc19340cbb6333eec2cf3974344aa522
+    SemanticVersion: 1.0.2
+    SourceCodeUrl: https://github.com/SumoLogic/sumologic-jfrog-xray
+    SpdxLicenseId: Apache-2.0
+Outputs:
+  JFrogXrayFunction:
+    Description: JFrogXrayScheduler Function ARN
+    Value:
+      Fn::GetAtt:
+      - JFrogXrayFunction
+      - Arn
+Parameters:
+  BackfillDays:
+    Type: String
+  Hostname:
+    Type: String
+  HttpLogsEndpoint:
+    Type: String
+  Password:
+    Type: String
+  Port:
+    Type: String
+  Username:
+    Type: String
+Resources:
+  JFrogXrayFunction:
+    Properties:
+      CodeUri: s3://appdevstore/JFrogXray/v1.0.2/2400926b482344296b44e3e35b717c6f
+      Description: This function gets triggered perodically via CloudWatchEvents and
+        fetches logs from JFrogXray and ingest to SumoLogic
+      Environment:
+        Variables:
+          BACKFILL_DAYS:
+            Ref: BackfillDays
+          ENABLE_CONSOLE_LOG: 'false'
+          ENVIRONMENT: aws
+          HOSTNAME:
+            Ref: Hostname
+          HTTP_LOGS_ENDPOINT:
+            Ref: HttpLogsEndpoint
+          PASSWORD:
+            Ref: Password
+          PORT:
+            Ref: Port
+          USERNAME:
+            Ref: Username
+      Events:
+        ScheduleRule:
+          Properties:
+            Schedule: rate(10 minutes)
+          Type: Schedule
+      Handler: main.main
+      MemorySize: 256
+      Policies:
+      - AmazonDynamoDBFullAccess
+      Runtime: python3.7
+      Timeout: 300
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
