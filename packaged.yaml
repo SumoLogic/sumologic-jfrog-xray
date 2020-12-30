@@ -14,10 +14,10 @@ Metadata:
     - sumologic
     - serverless
     - JFrogXray
-    LicenseUrl: s3://appdevstore/JFrogXray/v1.0.2/5122657d5b9a0d3713e24d3a33eae431
+    LicenseUrl: s3://appdevstore/JFrogXray/v1.0.3/5122657d5b9a0d3713e24d3a33eae431
     Name: sumologic-jfrog-xray
-    ReadmeUrl: s3://appdevstore/JFrogXray/v1.0.2/dc19340cbb6333eec2cf3974344aa522
-    SemanticVersion: 1.0.2
+    ReadmeUrl: s3://appdevstore/JFrogXray/v1.0.3/dc19340cbb6333eec2cf3974344aa522
+    SemanticVersion: 1.0.3
     SourceCodeUrl: https://github.com/SumoLogic/sumologic-jfrog-xray
     SpdxLicenseId: Apache-2.0
 Outputs:
@@ -43,7 +43,7 @@ Parameters:
 Resources:
   JFrogXrayFunction:
     Properties:
-      CodeUri: s3://appdevstore/JFrogXray/v1.0.2/2400926b482344296b44e3e35b717c6f
+      CodeUri: s3://appdevstore/JFrogXray/v1.0.3/ce8ee8b690fe36ad4ac4a4cc1535d149
       Description: This function gets triggered perodically via CloudWatchEvents and
         fetches logs from JFrogXray and ingest to SumoLogic
       Environment:
